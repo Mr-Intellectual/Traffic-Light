@@ -1,26 +1,46 @@
-import React from "react";
+import React, { useState, useEffect, useCallback }  from "react";
+import Light from "./light.jsx";
 
 //include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
 const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
+	let [pickColor, setPickColor] = useState("");
+
+	useEffect(() => {
+	  const interval = setInterval(() => {
+		setPickColor((prevColor) => {
+		  let colorPicker = ["red", "yellow", "green"];
+		  const newPickColor =
+			colorPicker[Math.floor(Math.random() * colorPicker.length)];
+		  if (prevColor === newPickColor) {
+			return pickColor; // keep the current color
+		  } else {
+			return newPickColor; // update to a new color
+		  }
+		});
+	  }, 1000);
+  
+	  return () => clearInterval(interval);
+	}, [pickColor]);
+  
+	const setGlow = useCallback(
+	  (light) => {
+		if (pickColor === light) {
+		  return "glow";
+		} else {
+		  return "";
+		}
+	  },
+	  [pickColor]
 	);
-};
+  
+	return (
+	  <div className="container mt-0">
+		<h1 className="justify-content-center mx-auto mb-0" id="rope"></h1>
+		<Light Glow={setGlow} />
+	  </div>
+	);
+  };
 
 export default Home;

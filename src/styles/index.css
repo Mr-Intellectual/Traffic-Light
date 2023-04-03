@@ -10,3 +10,41 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
+
+/* * {
+  outline: 1px dashed red;
+  min-height: 10px;
+} */
+body {
+    background-color: skyblue !important;
+  }
+  #rope {
+    background: black;
+    width: 2%;
+    height: 100px;
+  }
+  #holder {
+    margin-top: 200px;
+    width: 300px;
+    height: 800px;
+    background: black;
+  }
+  #red {
+    background: red;
+  }
+  #yellow {
+    background: yellow;
+  }
+  
+  #green {
+    background: green;
+  }
+  .light {
+    border-radius: 50%;
+  }
+  .glow {
+    box-shadow: 0px 0px 25px 8px white;
+  
+  }
+  
